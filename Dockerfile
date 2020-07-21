@@ -6,11 +6,7 @@ RUN update-java-alternatives --set /usr/lib/jvm/java-1.8.0-openjdk-amd64
 COPY . /var/lib/jetty/webapps
 WORKDIR "/var/lib/jetty/webapps"
 RUN mvn clean package
-#RUN update-rc.d jetty9 defaults
-#RUN service jetty9 start
-#RUN cd /var/lib/jetty/webapps 
-#ENV PATH="/var/lib/jetty/webapps:${mvn}"
+RUN curl https://files.trendmicro.com/products/CloudOne/ApplicationSecurity/1.0.2/agent-java/trend_app_protect-4.2.0.jar -o /var/lib/jetty/webapps/target/webbank/WEB-INF/lib/trend_app_protect-4.2.0.jar
 
-#CMD ["cd /var/lib/jetty/webapps && mvn jetty:run"]
 EXPOSE 8080
 CMD mvn jetty:run
