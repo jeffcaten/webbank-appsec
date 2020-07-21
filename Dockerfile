@@ -7,6 +7,9 @@ COPY . /var/lib/jetty/webapps
 WORKDIR "/var/lib/jetty/webapps"
 RUN mvn clean package
 RUN curl https://files.trendmicro.com/products/CloudOne/ApplicationSecurity/1.0.2/agent-java/trend_app_protect-4.2.0.jar -o /var/lib/jetty/webapps/target/webbank/WEB-INF/lib/trend_app_protect-4.2.0.jar
+COPY trend_app_protect.properties /var/lib/jetty/webapps/target/webbank/WEB-INF/lib
+RUN export MAVEN_OPTS="${MAVEN_OPTS} -javaagent:/var/lib/jetty/webapps/target/webbank/WEB-INF/lib/trend_app_protect-4.2.0.jar"
+RUN export MAVEN_OPTS="${MAVEN_OPTS} -javaagent:/var/lib/jetty/webapps/target/webbank/WEB-INF/lib/trend_app_protect-4.2.0.jar -Dcom.trend.app_protect.config.file=/var/lib/jetty/webapps/target/webbank/WEB-INF/lib/trend_app_protect.properties"
 
 EXPOSE 8080
 CMD mvn jetty:run
