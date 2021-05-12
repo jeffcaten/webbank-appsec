@@ -27,7 +27,7 @@
     <properties>
         <spring.framework.version>4.0.2.RELEASE</spring.framework.version>
         <hibernate.version>4.3.4.Final</hibernate.version>
-	<spring.security.version>3.2.2.RELEASE</spring.security.version>
+	<spring.security.version>5.2.10.RELEASE</spring.security.version>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
